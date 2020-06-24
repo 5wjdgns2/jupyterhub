@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jupyter-hub
+  labels:
+    app: jupyter-hub
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jupyter-hub
+  template:
+    metadata:
+      labels:
+        app: jupyter-hub
+    spec:
+      containers:
+      - name: jupyter-hub
+        image: 192.168.0.230:30002/jupyter-hub:latest
+        securityContext:
+         privileged: true
+        ports:
+          - containerPort: 80
